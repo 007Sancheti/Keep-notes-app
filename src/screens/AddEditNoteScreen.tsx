@@ -7,7 +7,7 @@ import Header from '../component/Header';
 function AddEditNotesScreen({navigation, route}) {
   console.log(navigation);
 
-  const {key = '', title = '', content = ''} = route.params;
+  const {key = '', title = '', content = ''} = route.params ?? {};
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteDescription, setNoteDescription] = useState(content);
 

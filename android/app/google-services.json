@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "565616440626",
+    "firebase_url": "https://notes-db-1914c-default-rtdb.firebaseio.com",
     "project_id": "notes-db-1914c",
     "storage_bucket": "notes-db-1914c.appspot.com"
   },
@@ -14,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "565616440626-lniir0tlo9ld697fkgoktkpo4igu3l82.apps.googleusercontent.com",
+          "client_id": "565616440626-37hgkqprhlo0utle7uqusfqn7bmjor5k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.keepnotes",
-            "certificate_hash": "82b387dde3f58ce87068b59c45480aa0edec39e0"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
@@ -37,6 +38,13 @@
             {
               "client_id": "565616440626-712a094uh7ho8pv5u1uouocco7bmhun5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "565616440626-tvs19gfc21ajjkn045jrbc2800i672g6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.KeepNotes"
+              }
             }
           ]
         }

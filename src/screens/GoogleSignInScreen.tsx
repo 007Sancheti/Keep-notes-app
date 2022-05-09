@@ -1,21 +1,15 @@
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
 import {
   GoogleSignin,
   GoogleSigninButton,
-  statusCodes,
 } from 'react-native-google-signin';
-import KeepNotes from './KeepNotesScreen';
 import {useDispatch, useSelector} from 'react-redux';
 import {userLogin} from '../slice/userSlice';
 
 const GoogleSignInScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {loggedIn} = useSelector(state => state.signin);
-  console.log({loggedIn});
-
-  const [userInfo, setuserInfo] = useState([]);
 
   useEffect(() => {
     GoogleSignin.configure({
