@@ -54,6 +54,7 @@ const KeepNotesScreen = ({navigation}) => {
             <View>
               <Text>Title: {item.title}</Text>
               <Text>Content: {item.content}</Text>
+              <Text>Date: {item.date}</Text>
             </View>
             <View style={{flexDirection: 'row'}}>
               <Icon name="edit" onPress={() => {

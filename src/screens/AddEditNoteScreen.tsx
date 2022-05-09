@@ -3,10 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import {Text, IconButton, TextInput, FAB} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import Header from '../component/Header';
+import {getCurrentDate} from '../utils/Date';
 
 function AddEditNotesScreen({navigation, route}) {
-  console.log(navigation);
-
   const {key = '', title = '', content = ''} = route.params ?? {};
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteDescription, setNoteDescription] = useState(content);
@@ -19,6 +18,7 @@ function AddEditNotesScreen({navigation, route}) {
         .update({
           title: noteTitle,
           content: noteDescription,
+          date: getCurrentDate(),
         })
         .then(() => {
           console.log('Notes updated!');
@@ -29,6 +29,7 @@ function AddEditNotesScreen({navigation, route}) {
         .add({
           title: noteTitle,
           content: noteDescription,
+          date: getCurrentDate(),
         })
         .then(() => {
           console.log('Notes added!');
