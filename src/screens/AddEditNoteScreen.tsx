@@ -4,35 +4,30 @@ import {Text, IconButton, TextInput, FAB} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import Header from '../component/Header';
 import {getCurrentDate} from '../utils/Date';
+import {firebase} from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+import {useSelector} from 'react-redux';
 
 function AddEditNotesScreen({navigation, route}) {
   const {key = '', title = '', content = ''} = route.params ?? {};
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteDescription, setNoteDescription] = useState(content);
-
+  const {user} = useSelector(state => state.signin);
   function onSaveNote() {
     if (key) {
-      firestore()
-        .collection('Notes')
-        .doc(key)
-        .update({
-          title: noteTitle,
-          content: noteDescription,
-          date: getCurrentDate(),
-        })
-        .then(() => {
-          console.log('Notes updated!');
-        });
+      firebase.database().ref(`users/${user.id}/${key}`).update({
+        title: noteTitle,
+        content: noteDescription,
+        date: new Date(),
+      });
     } else {
-      firestore()
-        .collection('Notes')
-        .add({
+      firebase
+        .database()
+        .ref('users/' + user.id)
+        .push({
           title: noteTitle,
           content: noteDescription,
-          date: getCurrentDate(),
-        })
-        .then(() => {
-          console.log('Notes added!');
+          date: new Date(),
         });
     }
     navigation.goBack();

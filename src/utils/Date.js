@@ -1,8 +1,9 @@
-export const getCurrentDate=()=>{
+export const getFormattedDate=(date)=>{
 
-    var date = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
+    const d = new Date(date);
+    var date = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
 
     //Alert.alert(date + '-' + month + '-' + year);
     // You can turn it in to your desired format

@@ -14,7 +14,7 @@ export const userSlice = createSlice({
   name,
   initialState,
   reducers: {
-    restoreToken: (state, action) => {
+    restoreUserInfo: (state, action) => {
       state.user = action.payload;
       state.loggedIn =  true;
     },
@@ -35,6 +35,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const {restoreToken, setUserInfo, clearUserInfo} = userSlice.actions;
+export const {restoreUserInfo, setUserInfo, clearUserInfo} = userSlice.actions;
 
 export default userSlice.reducer;

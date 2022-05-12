@@ -12,7 +12,7 @@ export function* userLogin() {
         const user = yield call(GoogleSignin.signIn);
         if (user) {
           yield call(AsyncStorage.setItem, 'user', JSON.stringify(user));
-          yield put(setUserInfo(user.idToken))
+          yield put(setUserInfo(user.user))
         }
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -32,9 +32,9 @@ export function* userLogin() {
 
 export function* signOut () {
   try {
+    yield call(AsyncStorage.clear);
     yield call(GoogleSignin.revokeAccess);
     yield call(GoogleSignin.signOut);
-    yield call(AsyncStorage.clear);
   } catch (error) {
     console.error(error);
   }
