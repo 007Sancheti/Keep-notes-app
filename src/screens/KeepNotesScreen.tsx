@@ -25,13 +25,14 @@ const KeepNotesScreen = ({navigation}) => {
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
+
     if (value === 'new') {
       setNotes(
         [...notes].sort((a, b) => {
           let c = new Date(a.date);
           let d = new Date(b.date);
           return d - c;
-        }),
+        })
       );
     } else if (value === 'old') {
       setNotes(
@@ -39,7 +40,7 @@ const KeepNotesScreen = ({navigation}) => {
           let c = new Date(a.date);
           let d = new Date(b.date);
           return c - d;
-        }),
+        })
       );
     }
   }, [value]);
@@ -52,6 +53,7 @@ const KeepNotesScreen = ({navigation}) => {
         const newNotes = [];
         if (!snapshot.val()) {
           setNotes(newNotes);
+          setValue(null);
           setLoading(false);
           return;
         }
@@ -61,6 +63,7 @@ const KeepNotesScreen = ({navigation}) => {
             key: childSnapshot.key,
           });
           setNotes(newNotes);
+          setValue(null);
           setLoading(false);
         });
       });
