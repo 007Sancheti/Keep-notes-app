@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Text, IconButton, TextInput, FAB} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import Header from '../component/Header';
-import {getCurrentDate} from '../utils/Date';
+import {getFormattedDate} from '../utils/Date';
 import {firebase} from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import {useSelector} from 'react-redux';
@@ -14,21 +14,19 @@ function AddEditNotesScreen({navigation, route}) {
   const [noteDescription, setNoteDescription] = useState(content);
   const {user} = useSelector(state => state.signin);
   function onSaveNote() {
+    const data= {
+      title: noteTitle,
+      content: noteDescription,
+      date: new Date(),
+      formattedDate: getFormattedDate(new Date()),
+    };
     if (key) {
-      firebase.database().ref(`users/${user.id}/${key}`).update({
-        title: noteTitle,
-        content: noteDescription,
-        date: new Date(),
-      });
+      firebase.database().ref(`users/${user.id}/${key}`).update(data);
     } else {
       firebase
         .database()
         .ref('users/' + user.id)
-        .push({
-          title: noteTitle,
-          content: noteDescription,
-          date: new Date(),
-        });
+        .push(data);
     }
     navigation.goBack();
   }

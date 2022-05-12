@@ -11,7 +11,6 @@ import {useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSelector} from 'react-redux';
 import database from '@react-native-firebase/database';
-import {getFormattedDate} from '../utils/Date';
 import {Dropdown} from 'react-native-element-dropdown';
 const data = [
   {label: 'Newest Notes First', value: 'new'},
@@ -59,7 +58,6 @@ const KeepNotesScreen = ({navigation}) => {
         snapshot.forEach(childSnapshot => {
           newNotes.push({
             ...childSnapshot.val(),
-            formattedDate: getFormattedDate(childSnapshot.val().date),
             key: childSnapshot.key,
           });
           setNotes(newNotes);
